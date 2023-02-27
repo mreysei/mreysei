@@ -1,8 +1,8 @@
-# 💫 About Me:
+## 💫 About Me:
 To be define 😜
 
 ## 🌐 Socials:
-[![Website](https://img.shields.io/badge/-mreysei.dev-589bbb?style=flat-square&label=Página%20Web&logoColor=white&link=https://www.mreysei.dev/)](https://www.mreysei.dev/) [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/mreysei) [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/mreysei) [![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?logo=Twitter&logoColor=white)](https://twitter.com/mreysei) 
+[![Website](https://img.shields.io/badge/-mreysei.dev-589bbb?style=flat-square&label=Website&logoColor=white&link=https://www.mreysei.dev/)](https://www.mreysei.dev/) [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?style=flat-square&label=Website&logo=linkedin&logoColor=white)](https://linkedin.com/in/mreysei) [![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=flat-square&label=Website&logo=Twitter&logoColor=white)](https://twitter.com/mreysei) [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?style=flat-square&label=Website&logo=Instagram&logoColor=white)](https://instagram.com/mreysei)
 
 ## ✍️ Blog posts:
 - [El feedback es necesario](https://www.mreysei.dev/blog/el-feedback-es-necesario/) 16 Dic 2022
