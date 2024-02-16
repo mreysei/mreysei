@@ -1,5 +1,7 @@
 ## 💫 About Me:
-To be define 😜
+Soy Michael Reyes, un developer en Lean Mind, una empresa de consultoría y desarrollo de software que ayuda a otras organizaciones a crear soluciones digitales de calidad. Tengo más de siete años de experiencia en el sector, y me especializo en Next.js, Node.js y TypeScript, entre otras tecnologías.
+
+Mi misión es aportar valor a los proyectos en los que participo, aplicando buenas prácticas, metodologías ágiles, testing, y un enfoque centrado en el usuario. Me gusta aprender constantemente nuevas herramientas y técnicas que me permitan mejorar mis habilidades y resolver los retos que se presentan. Una de mis pasiones es la programación, además también me interesa el diseño y la cultura japonesa.
 
 ## 🌐 Socials:
 [![Website](https://img.shields.io/badge/-mreysei.dev-589bbb?style=flat-square&label=Website&logoColor=white&link=https://www.mreysei.dev/)](https://www.mreysei.dev/) [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/mreysei) [![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=flat-square&logo=Twitter&logoColor=white)](https://twitter.com/mreysei) [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?style=flat-square&logo=Instagram&logoColor=white)](https://instagram.com/mreysei) 
