@@ -1,0 +1,72 @@
+name: Sync profile
+
+# Writes the README and its images from the content of www.mreysei.dev and commits what changed.
+# See docs/SYNC.md.
+
+on:
+  schedule:
+    # Every day at 21:17 UTC, early morning in Japan, and off the hour, when GitHub is busiest.
+    - cron: '17 21 * * *'
+  workflow_dispatch:
+  push:
+    branches: [master]
+    # What the sync itself writes never starts it again.
+    paths-ignore:
+      - README.md
+      - 'assets/**'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sync-profile
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run format:check
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+
+  sync:
+    needs: verify
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    # The only job that may write, and it installs nothing but what the sync runs with.
+    permissions:
+      contents: write
+    env:
+      # The portfolio the profile is written from. A repository variable of the same name
+      # replaces it without touching this file.
+      PROFILE_SITE_URL: ${{ vars.PROFILE_SITE_URL || 'https://www.mreysei.dev' }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      # No cache here: this job writes, and takes nothing a job that ran more code left behind.
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --omit=dev --ignore-scripts
+      - run: npm run sync
+      - name: Commit what changed
+        run: |
+          git add README.md assets
+          if git diff --cached --quiet; then
+            echo "The profile is up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "📝 Sync the profile with the content of the portfolio"
+          git push
