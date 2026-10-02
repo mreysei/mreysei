@@ -44,10 +44,10 @@ His work rests on **three pillars**: *rigorous technical development, team mento
   <sub>Dec 16, 2022 · 2 min read</sub>
 - **[Devs Lives #17 \| A developer travelling to Japan](https://www.mreysei.dev/en/blog/devs-lives-17-developer-travelling-to-japan)**<br>
   Some time ago I lived in Japan for about four months while studying Japanese. When I came back...<br>
-  <sub>Aug 15, 2022 · 1 min read</sub>
+  <sub>Aug 15, 2022 · 65 min to read and watch</sub>
 - **[Hooks in Flutter](https://www.mreysei.dev/en/blog/hooks-in-flutter)**<br>
   Did you know that Flutter has Hooks too? In this video I explain how they work by comparing them with React Hooks.<br>
-  <sub>May 24, 2021 · 1 min read</sub>
+  <sub>May 24, 2021 · 13 min to read and watch</sub>
 - **[Understanding the Flutter BLoC Pattern](https://www.mreysei.dev/en/blog/understanding-the-flutter-bloc-pattern)**<br>
   In this article, I will explain how Flutter’s BLoC Pattern works.<br>
   <sub>Jun 19, 2020 · 5 min read</sub>
@@ -88,7 +88,7 @@ His work rests on **three pillars**: *rigorous technical development, team mento
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/activity-light.svg">
-  <img src="assets/activity-dark.svg" width="100%" alt="1,677 contributions in the last year, 3,689 contributions since 2016, 15 days in the longest streak, 12 public repositories on GitHub. Languages: JavaScript 62.4%, CSS 16%, TypeScript 9.4%, Java 4.3%, Other 7.9%">
+  <img src="assets/activity-dark.svg" width="100%" alt="2,317 contributions in the last year, 4,329 contributions since 2016, 17 days in the longest streak, 12 public repositories on GitHub. Languages: TypeScript 50.3%, Dart 32.8%, JavaScript 6.3%, CSS 3.8%, Other 6.8%">
 </picture>
 
 </div>
