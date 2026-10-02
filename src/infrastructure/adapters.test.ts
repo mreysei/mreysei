@@ -85,6 +85,10 @@ describe('profileContentSchema', () => {
     ['a locale that is not a language code', { locale: 'en&x=1' }],
     ['a profile without a name', { profile: { ...profile, name: '' } }],
     ['a bio far too long', { profile: { ...profile, bio: 'x'.repeat(20_001) } }],
+    [
+      'a post that does not say whether its minutes count a video',
+      { posts: [{ ...post, includesVideo: undefined }] },
+    ],
     ['a headline of two lines', { profile: { ...profile, headline: 'one\n\n# two' } }],
     ['a name with a control character', { profile: { ...profile, name: 'Ada\u0000' } }],
     ['a technology named over two lines', { technologies: [{ ...technology, name: 'a\nb' }] }],

@@ -49,7 +49,10 @@ export interface Post {
   url: string;
   /** UTC instant. */
   publishedAt: string;
+  /** Whole minutes the post takes: reading its text and, with a video, watching it. */
   readingMinutes: number;
+  /** True when the minutes count a video: they are then not only of reading. */
+  includesVideo: boolean;
 }
 
 export interface Project {

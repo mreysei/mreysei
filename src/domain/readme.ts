@@ -128,8 +128,13 @@ function about(content: ProfileContent): string[] {
   ];
 }
 
+/** The minutes of a post with a video are of reading and watching: `read` alone would be wrong. */
+function timeOf(post: Post): string {
+  return `${post.readingMinutes} min ${post.includesVideo ? 'to read and watch' : 'read'}`;
+}
+
 function postItem(post: Post): string {
-  const minutes = `${post.readingMinutes} min read`;
+  const minutes = timeOf(post);
   return [
     `- **${link(post.title, post.url)}**<br>`,
     ...(post.excerpt.trim() === '' ? [] : [`  ${inline(post.excerpt)}<br>`]),

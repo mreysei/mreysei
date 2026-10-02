@@ -153,6 +153,18 @@ describe('buildProfileFiles', () => {
     assert.ok(readme.endsWith('by a workflow of this repository.</sub>\n</div>\n'));
   });
 
+  it('says that the minutes of a post with a video are of reading and watching', () => {
+    const [post] = SAMPLE_CONTENT.posts;
+    if (!post) throw new Error('The sample has a post.');
+    const { readme } = build({
+      ...SAMPLE_CONTENT,
+      posts: [{ ...post, readingMinutes: 65, includesVideo: true }, post],
+    });
+
+    assert.ok(readme.includes('<sub>Jan 28, 2025 · 65 min to read and watch</sub>'));
+    assert.ok(readme.includes('<sub>Jan 28, 2025 · 4 min read</sub>'));
+  });
+
   it('leaves out the sections and the images that have nothing to show', () => {
     const { paths, readme } = build({
       ...SAMPLE_CONTENT,

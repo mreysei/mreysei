@@ -126,6 +126,7 @@ export function profileContentSchema(siteOrigin: string) {
           url: z.union([ownPage, externalUrl]),
           publishedAt: z.iso.datetime(),
           readingMinutes: count,
+          includesVideo: z.boolean(),
         }),
       )
       .max(5),

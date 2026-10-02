@@ -80,6 +80,7 @@ export const SAMPLE_CONTENT: ProfileContent = {
       url: 'https://www.example.org/en/blog/code-is-not-everything',
       publishedAt: '2025-01-28T12:00:00.000Z',
       readingMinutes: 4,
+      includesVideo: false,
     },
   ],
   projects: [
