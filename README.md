@@ -1,30 +1,100 @@
-## 💫 About Me:
-Michael Reyes is a Lead Frontend Specialist & Consultant at Lean Mind, a consultancy specialised in TDD, best practices, and agile methodologies for quality software development. With more than 10 years of experience in the field, he specialises in Next.js, Node.js, and TypeScript, and has worked on a wide range of projects — from mobile applications with Flutter to international e-invoicing solutions with C# and .NET. He works remotely from Tenerife with national and international teams.
+<!-- Written by the sync of this repository from the content of the portfolio. Do not edit it by hand: see docs/SYNC.md. -->
 
-His work is built on three pillars: rigorous technical development, team mentoring, and the promotion of quality culture. He applies best practices, agile methodologies, and testing across all his projects, and has supported teams of up to fourteen people as a consultant in adopting sustainable quality standards. He also shares his knowledge through technical articles on the blog and programming exercises in the katas section. Beyond software, he has a strong interest in design and Japanese culture.
+<div align="center">
 
-## 🌐 Socials:
-[![Website](https://img.shields.io/badge/-mreysei.dev-589bbb?style=flat-square&label=Website&logoColor=white&link=https://www.mreysei.dev/)](https://www.mreysei.dev/) [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/mreysei) [![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=flat-square&logo=Twitter&logoColor=white)](https://twitter.com/mreysei) [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?style=flat-square&logo=Instagram&logoColor=white)](https://instagram.com/mreysei) 
+<a href="https://www.mreysei.dev/en">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.svg">
+  <img src="assets/banner-dark.svg" width="100%" alt="Michael Reyes — Lead Frontend Specialist &amp; Consultant · Japan. I build fast, accessible web products that rank. Currently at Lean Mind.">
+</picture>
+</a>
 
-## ✍️ Blog posts:
-- [El código no lo es todo](https://www.mreysei.dev/blog/el-codigo-no-lo-es-todo/) 28 Ene 2025
-- [El feedback es necesario](https://www.mreysei.dev/blog/el-feedback-es-necesario/) 16 Dic 2022
-- [Devs Lives #17 | Developer viajando a Japón](https://www.mreysei.dev/blog/devs-lives-17-developer-viajando-a-japon/) 15 Ago 2022
-- [Hooks en Flutter](https://www.mreysei.dev/blog/hooks-en-flutter/) 24 May 2021
-- [BLoC Pattern con Flutter](https://www.mreysei.dev/blog/bloc-pattern-con-flutter/) 19 Jun 2020
-- [Tips de CSS que podrían ayudarte](https://www.mreysei.dev/blog/tips-de-css-que-podrian-ayudarte/) 2 Mar 2020
-- [Flutter, ¡una maravilla! ¿o... no?](https://www.mreysei.dev/blog/flutter-una-maravilla-o-no/) 28 Jan 2020
+<p>
+<a href="https://www.mreysei.dev/en"><img src="assets/link-site.svg" height="40" alt="www.mreysei.dev"></a>
+<a href="https://www.linkedin.com/in/mreysei"><img src="assets/link-linkedin.svg" height="40" alt="LinkedIn"></a>
+<a href="https://x.com/mreysei"><img src="assets/link-x.svg" height="40" alt="X"></a>
+<a href="https://www.instagram.com/mreysei"><img src="assets/link-instagram.svg" height="40" alt="Instagram"></a>
+</p>
 
-## 💻 Tech Stack:
-![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![Kotlin](https://img.shields.io/badge/kotlin-%230095D5.svg?style=for-the-badge&logo=kotlin&logoColor=white) ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![Angular.js](https://img.shields.io/badge/angular.js-%23E23237.svg?style=for-the-badge&logo=angularjs&logoColor=white) ![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white) ![Chart.js](https://img.shields.io/badge/chart.js-F5788D.svg?style=for-the-badge&logo=chart.js&logoColor=white) ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white) ![jQuery](https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white) ![Less](https://img.shields.io/badge/less-2B4C80?style=for-the-badge&logo=less&logoColor=white) ![NPM](https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white) ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![React Native](https://img.shields.io/badge/react_native-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white) ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white) ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white) ![Vue.js](https://img.shields.io/badge/vuejs-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D) ![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black) ![Xamarin](https://img.shields.io/badge/Xamarin-3199DC?style=for-the-badge&logo=xamarin&logoColor=white) ![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white) ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white) ![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white) ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white) ![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white) ![Trello](https://img.shields.io/badge/Trello-%23026AA7.svg?style=for-the-badge&logo=Trello&logoColor=white) ![Raspberry Pi](https://img.shields.io/badge/-RaspberryPi-C51A4A?style=for-the-badge&logo=Raspberry-Pi) ![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white) ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white) ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white) ![Confluence](https://img.shields.io/badge/confluence-%23172BF4.svg?style=for-the-badge&logo=confluence&logoColor=white) ![Jira](https://img.shields.io/badge/jira-%230A0FFF.svg?style=for-the-badge&logo=jira&logoColor=white) ![Babel](https://img.shields.io/badge/Babel-F9DC3e?style=for-the-badge&logo=babel&logoColor=black) ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
-## 📊 GitHub Stats:
-![](https://github-readme-stats.vercel.app/api?username=mreysei&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true)
-![](https://github-readme-streak-stats.herokuapp.com/?user=mreysei&theme=tokyonight&hide_border=true)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://www.mreysei.dev/api/github-profile/views.svg?theme=dark&amp;locale=en">
+  <source media="(prefers-color-scheme: light)" srcset="https://www.mreysei.dev/api/github-profile/views.svg?theme=light&amp;locale=en">
+  <img src="https://www.mreysei.dev/api/github-profile/views.svg?theme=dark&amp;locale=en" height="28" alt="profile views counter">
+</picture>
 
-## 🏆 GitHub Trophies
-![](https://github-profile-trophy.vercel.app/?username=mreysei&theme=tokyonight&no-frame=true&no-bg=false&margin-w=4)
+</div>
+
+## About
+
+**I build fast, accessible web products that rank.**<br>
+Lead Frontend Specialist &amp; Consultant · Japan
+
+Michael Reyes is a **Lead Frontend Specialist & Consultant** at Lean Mind, a consultancy specialised in *TDD, best practices and agile methodologies* for quality software development. With **more than 10 years** of experience in the field, he specialises in *Next.js, Node.js and TypeScript*, and has worked on projects of very different kinds: from mobile applications with *Flutter* to international e-invoicing solutions with *C# and .NET*. He works remotely from Tenerife with national and international teams.
+
+His work rests on **three pillars**: *rigorous technical development, team mentoring and the promotion of a quality culture*. He applies best practices, agile methodologies and testing in all his projects, and as a consultant he has supported teams of up to **fourteen people** in adopting sustainable quality standards. He shares his experience in technical articles on the blog and programming exercises in the katas section. Beyond software, he is passionate about *design and Japanese culture*.
+
+## Latest posts
+
+- **[Code is not everything](https://www.mreysei.dev/en/blog/code-is-not-everything)**<br>
+  In this article, I reflect on the importance of people before code itself.<br>
+  <sub>Jan 28, 2025 · 4 min read</sub>
+- **[Feedback is necessary](https://www.mreysei.dev/en/blog/feedback-is-necessary)**<br>
+  During a trip I took a few months ago, I spent a lot of time thinking about myself, especially in relation to work because...<br>
+  <sub>Dec 16, 2022 · 2 min read</sub>
+- **[Devs Lives #17 \| A developer travelling to Japan](https://www.mreysei.dev/en/blog/devs-lives-17-developer-travelling-to-japan)**<br>
+  Some time ago I lived in Japan for about four months while studying Japanese. When I came back...<br>
+  <sub>Aug 15, 2022 · 1 min read</sub>
+- **[Hooks in Flutter](https://www.mreysei.dev/en/blog/hooks-in-flutter)**<br>
+  Did you know that Flutter has Hooks too? In this video I explain how they work by comparing them with React Hooks.<br>
+  <sub>May 24, 2021 · 1 min read</sub>
+- **[Understanding the Flutter BLoC Pattern](https://www.mreysei.dev/en/blog/understanding-the-flutter-bloc-pattern)**<br>
+  In this article, I will explain how Flutter’s BLoC Pattern works.<br>
+  <sub>Jun 19, 2020 · 5 min read</sub>
+
+[Every post on the blog](https://www.mreysei.dev/en/blog) →
+
+## Projects
+
+- **[¡Decídete!](https://www.mreysei.dev/en/projects/decidete)** <sub>Mobile app · 2026</sub><br>
+  Decide between two options based on the preferences and importance you choose.
+
+## Career
+
+| When | What | Where |
+| --- | --- | --- |
+| Jul 2018 – Present | Lead Frontend Specialist &amp; Consultant | [Lean Mind](https://leanmind.es/) |
+| Dec 2017 – Apr 2018 | Web Developer | Omnia Infosys |
+| Mar 2017 – Dec 2017 | Full-Stack Developer · Internship | Bakata Solutions |
+| Sep 2015 – Jun 2017 | Higher Diploma in Web Application Development (DAW) | CIFP César Manrique |
+| Jan 2014 – Aug 2015 | Freelance Web Developer | mreysei |
+
+<div align="center">
+
+## Stack
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/stack-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/stack-light.svg">
+  <img src="assets/stack-dark.svg" width="100%" alt="Technologies: C#, .NET, Azure, Oracle, xUnit, React, TypeScript, Tailwind CSS, TDD, Jest, Node.js, Express, MySQL, Hugo, HTML5, CSS, JavaScript, Flutter, Dart, BLoC, Android, iOS, CSS Modules, Kotlin, MVVM, JUnit, Trello, Figma, Ionic, Angular, Java, WordPress, PHP, ASP.NET MVC, Razor">
+</picture>
+
+</div>
+
+<div align="center">
+
+## GitHub in numbers
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/activity-light.svg">
+  <img src="assets/activity-dark.svg" width="100%" alt="1,677 contributions in the last year, 3,689 contributions since 2016, 15 days in the longest streak, 12 public repositories on GitHub. Languages: JavaScript 62.4%, CSS 16%, TypeScript 9.4%, Java 4.3%, Other 7.9%">
+</picture>
+
+</div>
 
 ---
-[![](https://visitcount.itsvg.in/api?id=mreysei&icon=3&color=6)](https://visitcount.itsvg.in)
 
-<!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
+<div align="center">
+<sub>Written from the content of <a href="https://www.mreysei.dev/en">www.mreysei.dev</a> by a workflow of this repository.</sub>
+</div>
