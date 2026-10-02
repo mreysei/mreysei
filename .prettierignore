@@ -1,0 +1,5 @@
+node_modules
+package-lock.json
+# Written by the sync: checked by its own tests, never reformatted by hand.
+README.md
+assets
