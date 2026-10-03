@@ -6,7 +6,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.svg">
-  <img src="assets/banner-dark.svg" width="100%" alt="Michael Reyes — Lead Frontend Specialist &amp; Consultant · Japan. Currently at Lean Mind.">
+  <img src="assets/banner-dark.svg" width="100%" alt="Michael Reyes — Lead Frontend Specialist &amp; Consultant · Japan. Developer passionate about technology, quality, continuous learning, design, and Japanese culture. Currently at Lean Mind.">
 </picture>
 </a>
 
@@ -27,6 +27,7 @@
 
 ## About
 
+**Developer passionate about technology, quality, continuous learning, design, and Japanese culture.**<br>
 Lead Frontend Specialist &amp; Consultant · Japan
 
 Michael Reyes is a **Lead Frontend Specialist & Consultant** at Lean Mind, a consultancy specialised in *TDD, best practices and agile methodologies* for quality software development. With **more than 10 years** of experience in the field, he specialises in *Next.js, Node.js and TypeScript*, and has worked on projects of very different kinds: from mobile applications with *Flutter* to international e-invoicing solutions with *C# and .NET*. He works remotely from Tenerife with national and international teams.
@@ -87,7 +88,7 @@ His work rests on **three pillars**: *rigorous technical development, team mento
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/activity-light.svg">
-  <img src="assets/activity-dark.svg" width="100%" alt="2,441 contributions in the last year, 4,453 contributions since 2016, 17 days in the longest streak, 12 public repositories on GitHub. Languages: TypeScript 51.6%, Dart 31.8%, JavaScript 6.1%, CSS 3.8%, Other 6.7%">
+  <img src="assets/activity-dark.svg" width="100%" alt="2,585 contributions in the last year, 4,597 contributions since 2016, 17 days in the longest streak, 12 public repositories on GitHub. Languages: TypeScript 55.6%, Dart 29%, JavaScript 5.6%, CSS 3.6%, Other 6.2%">
 </picture>
 
 </div>
