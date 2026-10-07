@@ -13,8 +13,9 @@
 <p>
 <a href="https://www.mreysei.dev/en"><img src="assets/link-site.svg" height="40" alt="www.mreysei.dev"></a>
 <a href="https://www.linkedin.com/in/mreysei"><img src="assets/link-linkedin.svg" height="40" alt="LinkedIn"></a>
-<a href="https://x.com/mreysei"><img src="assets/link-x.svg" height="40" alt="X"></a>
+<a href="https://dev.to/mreysei"><img src="assets/link-devto.svg" height="40" alt="DEV Community"></a>
 <a href="https://www.instagram.com/mreysei"><img src="assets/link-instagram.svg" height="40" alt="Instagram"></a>
+<a href="https://x.com/mreysei"><img src="assets/link-x.svg" height="40" alt="X"></a>
 </p>
 
 <picture>
