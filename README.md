@@ -13,7 +13,7 @@
 <p>
 <a href="https://www.mreysei.dev/en"><img src="assets/link-site.svg" height="40" alt="www.mreysei.dev"></a>
 <a href="https://www.linkedin.com/in/mreysei"><img src="assets/link-linkedin.svg" height="40" alt="LinkedIn"></a>
-<a href="https://dev.to/mreysei"><img src="assets/link-devto.svg" height="40" alt="DEV Community"></a>
+<a href="https://dev.to/mreysei"><img src="assets/link-devto.svg" height="40" alt="DEV"></a>
 <a href="https://www.instagram.com/mreysei"><img src="assets/link-instagram.svg" height="40" alt="Instagram"></a>
 <a href="https://x.com/mreysei"><img src="assets/link-x.svg" height="40" alt="X"></a>
 </p>
@@ -65,10 +65,10 @@ His work rests on **three pillars**: *rigorous technical development, team mento
 | When | What | Where |
 | --- | --- | --- |
 | Jul 2018 – Present | Lead Frontend Specialist &amp; Consultant | [Lean Mind](https://leanmind.es/) |
-| Dec 2017 – Apr 2018 | Web Developer | Omnia Infosys |
-| Mar 2017 – Dec 2017 | Full-Stack Developer · Internship | Bakata Solutions |
-| Sep 2015 – Jun 2017 | Higher Diploma in Web Application Development (DAW) | CIFP César Manrique |
-| Jan 2014 – Aug 2015 | Freelance Web Developer | mreysei |
+| Dec 2017 – Apr 2018 | Web Developer | [Omnia Infosys](https://omniainfosys.com/) |
+| Mar 2017 – Dec 2017 | Full-Stack Developer · Internship | [Bakata Solutions](https://bakata.es/) |
+| Sep 2015 – Jun 2017 | Higher Diploma in Web Application Development (DAW) | [CIFP César Manrique](https://www3.gobiernodecanarias.org/medusa/edublog/cifpcesarmanrique/) |
+| Jan 2014 – Aug 2015 | Freelance Web Developer | Freelance |
 
 <div align="center">
 
@@ -89,7 +89,7 @@ His work rests on **three pillars**: *rigorous technical development, team mento
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/activity-light.svg">
-  <img src="assets/activity-dark.svg" width="100%" alt="3,063 contributions in the last year, 5,105 contributions since 2016, 20 days in the longest streak, 12 public repositories on GitHub. Languages: TypeScript 57.5%, Dart 27.5%, JavaScript 5.3%, CSS 3.9%, Other 5.8%">
+  <img src="assets/activity-dark.svg" width="100%" alt="3,413 contributions in the last year, 5,409 contributions since 2016, 20 days in the longest streak, 12 public repositories on GitHub. Languages: TypeScript 61%, Dart 24.8%, JavaScript 4.8%, CSS 4%, Other 5.4%">
 </picture>
 
 </div>
