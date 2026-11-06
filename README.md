@@ -53,7 +53,7 @@ His work rests on **three pillars**: *rigorous technical development, team mento
   In this article, I will explain how Flutter’s BLoC Pattern works.<br>
   <sub>Jun 19, 2020 · 5 min read</sub>
 
-[Every post on the blog](https://www.mreysei.dev/en/blog) →
+[Every post on the blog (7)](https://www.mreysei.dev/en/blog) →
 
 ## Projects
 
@@ -65,6 +65,8 @@ His work rests on **three pillars**: *rigorous technical development, team mento
   An installable web app to keep your Japanese alive, from kana to the JLPT, that works offline.
 - **[Próxima Estación](https://www.mreysei.dev/en/projects/proxima-estacion)** <sub>2026</sub><br>
   Practical Japanese on Instagram, produced by a team of Claude agents orchestrated by n8n.
+
+[Every project (11)](https://www.mreysei.dev/en/projects) →
 
 ## Career
 
@@ -95,7 +97,7 @@ His work rests on **three pillars**: *rigorous technical development, team mento
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/activity-light.svg">
-  <img src="assets/activity-dark.svg" width="100%" alt="5,076 contributions in the last year, 7,150 contributions since 2016, 20 days in the longest streak, 11 public repositories on GitHub. Languages: TypeScript 69.4%, Dart 18.5%, CSS 4.1%, JavaScript 3.7%, Other 4.3%">
+  <img src="assets/activity-dark.svg" width="100%" alt="5,173 contributions in the last year, 7,247 contributions since 2016, 20 days in the longest streak, 11 public repositories on GitHub. Languages: TypeScript 68.5%, Dart 17.4%, CSS 4%, JavaScript 3.4%, Other 6.7%">
 </picture>
 
 </div>
