@@ -57,8 +57,14 @@ His work rests on **three pillars**: *rigorous technical development, team mento
 
 ## Projects
 
-- **[¡Decídete!](https://www.mreysei.dev/en/projects/decidete)** <sub>Mobile app · 2026</sub><br>
-  Decide between two options based on the preferences and importance you choose.
+- **[Ecosystem](https://www.mreysei.dev/en/projects/ecosystem)** <sub>Web · 2026</sub><br>
+  The platform behind this portfolio: nine projects connected around a private API.
+- **[Kinnance](https://www.mreysei.dev/en/projects/kinnance)** <sub>Mobile app · 2026</sub><br>
+  Personal finance with savings goals and a coach that gives AI recommendations.
+- **[Mamoru Japan](https://www.mreysei.dev/en/projects/mamoru-japan)** <sub>Web · 2026</sub><br>
+  An installable web app to keep your Japanese alive, from kana to the JLPT, that works offline.
+- **[Próxima Estación](https://www.mreysei.dev/en/projects/proxima-estacion)** <sub>2026</sub><br>
+  Practical Japanese on Instagram, produced by a team of Claude agents orchestrated by n8n.
 
 ## Career
 
@@ -89,7 +95,7 @@ His work rests on **three pillars**: *rigorous technical development, team mento
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/activity-light.svg">
-  <img src="assets/activity-dark.svg" width="100%" alt="5,045 contributions in the last year, 7,119 contributions since 2016, 20 days in the longest streak, 12 public repositories on GitHub. Languages: TypeScript 69.3%, Dart 18.6%, CSS 4.1%, JavaScript 3.7%, Other 4.3%">
+  <img src="assets/activity-dark.svg" width="100%" alt="5,076 contributions in the last year, 7,150 contributions since 2016, 20 days in the longest streak, 11 public repositories on GitHub. Languages: TypeScript 69.4%, Dart 18.5%, CSS 4.1%, JavaScript 3.7%, Other 4.3%">
 </picture>
 
 </div>
