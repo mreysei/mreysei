@@ -8,7 +8,7 @@ const ICON = 16;
 const ICON_GAP = 8;
 const GAP = 8;
 const NAME_SIZE = 13;
-const EXPERIENCE_SIZE = 11;
+const EXPERIENCE_SIZE = 9;
 const MONTHS_IN_A_YEAR = 12;
 
 /** About how long, in English: months under a year, then whole years. */
