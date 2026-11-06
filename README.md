@@ -63,7 +63,7 @@ His work rests on **three pillars**: *rigorous technical development, team mento
   Personal finance with savings goals and a coach that gives AI recommendations.
 - **[Mamoru Japan](https://www.mreysei.dev/en/projects/mamoru-japan)** <sub>Web · 2026</sub><br>
   An installable web app to keep your Japanese alive, from kana to the JLPT, that works offline.
-- **[Próxima Estación](https://www.mreysei.dev/en/projects/proxima-estacion)** <sub>2026</sub><br>
+- **[Próxima Estación](https://www.mreysei.dev/en/projects/proxima-estacion)** <sub>Automation · 2026</sub><br>
   Practical Japanese on Instagram, produced by a team of Claude agents orchestrated by n8n.
 
 [Every project (11)](https://www.mreysei.dev/en/projects) →
@@ -85,7 +85,7 @@ His work rests on **three pillars**: *rigorous technical development, team mento
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/stack-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/stack-light.svg">
-  <img src="assets/stack-dark.svg" width="100%" alt="Technologies: C#, .NET, Azure, Oracle, xUnit, React, TypeScript, Tailwind CSS, TDD, Jest, Node.js, Express, MySQL, Hugo, HTML5, CSS, JavaScript, Flutter, Dart, BLoC, Android, iOS, CSS Modules, Kotlin, MVVM, JUnit, Trello, Figma, Ionic, Angular, Java, WordPress, PHP, ASP.NET MVC, Razor">
+  <img src="assets/stack-dark.svg" width="100%" alt="Technologies: TDD: 4 years, TypeScript: 4 years, C#: 3 years, CSS: 3 years, HTML5: 3 years, React: 3 years, .NET: 3 years, Android: 3 years, Azure: 3 years, Oracle: 3 years, xUnit: 3 years, Dart: 2 years, Flutter: 2 years, Jest: 2 years, JavaScript: 2 years, PHP: 2 years, iOS: 2 years, BLoC: 1 year, Node.js: 1 year, Docker: 1 year, Fastify: 1 year, GitHub Actions: 1 year, PostgreSQL: 1 year, Tailwind CSS: 1 year, Vitest: 1 year, Express: 10 months, MySQL: 10 months, ASP.NET MVC: 9 months, Claude: 9 months, CSS Modules: 9 months, Drizzle ORM: 9 months, Razor: 9 months, Next.js: 6 months, Prisma: 6 months, PWA: 6 months, SQLite: 6 months, Vite: 6 months, JUnit: 5 months, Hugo: 4 months, WordPress: 4 months, Discord.js: 3 months, Firebase: 3 months, Java: 3 months, MongoDB: 3 months, n8n: 3 months, NestJS: 3 months, Kotlin: 2 months, MVVM: 2 months, Angular: 1 month, Figma: 1 month, Ionic: 1 month, Trello: 1 month">
 </picture>
 
 </div>
