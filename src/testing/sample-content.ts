@@ -75,7 +75,11 @@ export const SAMPLE_CONTENT: ProfileContent = {
       endDate: '2017-06',
     },
   ],
-  technologies: [TYPESCRIPT, technologyOf('TDD'), technologyOf('Express', '#0a0a0a')],
+  technologies: [
+    { ...TYPESCRIPT, months: 60 },
+    { ...technologyOf('TDD'), months: 30 },
+    { ...technologyOf('Express', '#0a0a0a'), months: 8 },
+  ],
   posts: [
     {
       title: 'Code is not everything',

@@ -119,7 +119,7 @@ export function profileContentSchema(siteOrigin: string) {
         }),
       )
       .max(100),
-    technologies: z.array(technology).max(300),
+    technologies: z.array(technology.extend({ months: count.max(1200) })).max(300),
     posts: z
       .array(
         z.object({

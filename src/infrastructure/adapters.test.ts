@@ -92,6 +92,8 @@ describe('profileContentSchema', () => {
     ['a headline of two lines', { profile: { ...profile, headline: 'one\n\n# two' } }],
     ['a name with a control character', { profile: { ...profile, name: 'Ada\u0000' } }],
     ['a technology named over two lines', { technologies: [{ ...technology, name: 'a\nb' }] }],
+    ['a technology without its months', { technologies: [{ ...technology, months: undefined }] }],
+    ['a technology of part of a month', { technologies: [{ ...technology, months: 2.5 }] }],
     ['a bio with a control character', { profile: { ...profile, bio: 'text\u001b[31m' } }],
   ];
   for (const [what, change] of refused) {

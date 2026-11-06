@@ -259,7 +259,7 @@ describe('every image', () => {
       headline: HOSTILE,
       handle: HOSTILE,
     },
-    technologies: [{ ...TYPESCRIPT, name: HOSTILE }],
+    technologies: [{ ...TYPESCRIPT, name: HOSTILE, months: 1 }],
   };
   const images = THEMES.flatMap((theme) => [
     renderBanner(hostile, theme),

@@ -27,6 +27,11 @@ export interface Technology {
   iconPath: string | null;
 }
 
+/** A technology of the owner's stack, with the months he has used it in all. */
+export interface StackTechnology extends Technology {
+  months: number;
+}
+
 export interface ProfileLink {
   /** A slug of lowercase letters and digits, such as `linkedin`: the platforms are the portfolio's to name. */
   platform: string;
@@ -114,8 +119,8 @@ export interface ProfileContent {
   links: ProfileLink[];
   /** Most recent first. */
   career: CareerEntry[];
-  /** The most recently used first. */
-  technologies: Technology[];
+  /** The owner's stack: most months first, then by name. */
+  technologies: StackTechnology[];
   /** Newest first. */
   posts: Post[];
   projects: Project[];
