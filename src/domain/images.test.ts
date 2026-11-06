@@ -15,7 +15,7 @@ import {
   SAMPLE_CONTENT,
   TYPESCRIPT,
 } from '../testing/sample-content.ts';
-import { renderStack } from './stack.ts';
+import { experienceOf, renderStack } from './stack.ts';
 import { PALETTES, THEMES } from './theme.ts';
 
 const activity = SAMPLE_CONTENT.activity;
@@ -149,38 +149,95 @@ describe('renderLinkBadge', () => {
 });
 
 describe('renderStack', () => {
-  it('writes every technology, with its logo when it has one', () => {
-    const svg = renderStack(SAMPLE_CONTENT.technologies, 'dark');
+  const stack = SAMPLE_CONTENT.technologies;
+  const withMonths = (name: string, months: number) => ({ ...TYPESCRIPT, name, months });
 
-    assert.deepEqual(textsOf(svg), ['TypeScript', 'TDD', 'Express']);
-    assert.equal(svg.match(/<path /g)?.length, 1);
-    assert.match(svg, /aria-label="TypeScript, TDD, Express"/);
+  it('says about how long each technology was used, in months under a year', () => {
+    assert.deepEqual([0, 1, 11, 12, 17, 18, 30, 60].map(experienceOf), [
+      '0 months',
+      '1 month',
+      '11 months',
+      '1 year',
+      '1 year',
+      '2 years',
+      '3 years',
+      '5 years',
+    ]);
   });
 
-  it('draws a logo in its brand colour only where it stands out', () => {
-    const dark = { ...TYPESCRIPT, name: 'Dark', color: '#0a0a0a' };
+  it('writes every technology with how long, the longest used first, and its logo', () => {
+    const svg = renderStack([...stack].reverse(), 'dark');
 
-    assert.match(renderStack([TYPESCRIPT], 'dark'), /<path [^>]*fill="#3178c6"/);
-    assert.match(
-      renderStack([dark], 'dark'),
-      new RegExp(`<path [^>]*fill="${PALETTES.dark.text}"`),
+    // A card filled in part is drawn twice, once in each tone.
+    assert.deepEqual(
+      [...new Set(textsOf(svg))],
+      ['TypeScript', '5 years', 'TDD', '3 years', 'Express', '8 months'],
     );
-    assert.match(renderStack([dark], 'light'), /<path [^>]*fill="#0a0a0a"/);
+    assert.equal(svg.match(/<path /g)?.length, 1);
+    assert.match(svg, /aria-label="TypeScript: 5 years, TDD: 3 years, Express: 8 months"/);
+  });
+
+  it('fills the longest used with the accent, the least used with none, the rest in proportion', () => {
+    const { surfaceRaised, accent } = PALETTES.dark;
+    const svg = renderStack(stack, 'dark');
+    const cards = [...svg.matchAll(/ width="([\d.]+)" height="47" rx="8" fill="(#\w+)"/g)].map(
+      ([, width, fill]) => ({ width: Number(width) + 1, fill }),
+    );
+    const clips = [...svg.matchAll(/<clipPath id="(\w+)"><rect [^>]* width="(\d+)"/g)];
+
+    // TypeScript all accent; TDD on the surface, then again in accent over part of it; Express none.
+    assert.deepEqual(
+      cards.map(({ fill }) => fill),
+      [accent, surfaceRaised, accent, surfaceRaised],
+    );
+    assert.equal(clips.length, 1);
+    assert.equal(Number(clips[0]?.[2]), Math.round((cards[1]?.width ?? 0) * ((30 - 8) / (60 - 8))));
+    assert.ok(svg.includes(`<g clip-path="url(#${clips[0]?.[1] ?? ''})">`));
+  });
+
+  it('fills every card when all were used as long', () => {
+    const svg = renderStack([withMonths('A', 7), withMonths('B', 7)], 'light');
+
+    assert.doesNotMatch(svg, /<clipPath/);
+    assert.equal(svg.match(new RegExp(`fill="${PALETTES.light.accent}"`, 'g'))?.length, 2);
+  });
+
+  it('keeps every text readable on the tone it is written on', () => {
+    for (const theme of THEMES) {
+      const { surface, text } = PALETTES[theme];
+      const svg = renderStack(stack, theme);
+      const inks = [...svg.matchAll(/<text [^>]*fill="(#\w+)"/g)].map(([, fill]) => fill);
+
+      assert.deepEqual([...new Set(inks)].sort(), [surface, text].sort());
+    }
+  });
+
+  it('draws a logo in its brand colour only where it stands out on its tone', () => {
+    const longer = { ...TYPESCRIPT, name: 'Longer', iconPath: null, months: 24 };
+    const black = { ...TYPESCRIPT, name: 'Black', color: '#0a0a0a', months: 1 };
+    const logoOf = (svg: string) => /<path [^>]*fill="(#\w+)"/.exec(svg)?.[1];
+
+    assert.equal(logoOf(renderStack([longer, withMonths('TypeScript', 1)], 'dark')), '#3178c6');
+    assert.equal(logoOf(renderStack([longer, black], 'dark')), PALETTES.dark.text);
+    assert.equal(logoOf(renderStack([black], 'dark')), '#0a0a0a');
   });
 
   it('wraps into rows that fit the width of a README', () => {
-    const many = Array.from({ length: 40 }, (_, index) => ({
-      ...TYPESCRIPT,
-      name: `Technology ${String(index)}`,
-    }));
-    const svg = renderStack(many, 'light');
-    const edges = [...svg.matchAll(/<rect x="([\d.]+)" y="[\d.]+" width="([\d.]+)"/g)].map(
-      ([, x, width]) => [Number(x), Number(x) + Number(width)],
+    const many = Array.from({ length: 40 }, (_, index) =>
+      withMonths(`Technology ${String(index)}`, index),
     );
+    const svg = renderStack(many, 'light');
+    const edges = [
+      ...svg.matchAll(/<rect x="([\d.]+)" y="[\d.]+" width="([\d.]+)" height="47"/g),
+    ].map(([, x, width]) => [Number(x), Number(x) + Number(width)]);
 
-    assert.equal(edges.length, 40);
+    assert.ok(edges.length >= 40);
     assert.ok(edges.every(([left, right]) => (left ?? -1) >= 0 && (right ?? 999) <= 880));
-    assert.ok(Number(/ height="(\d+)"/.exec(svg)?.[1]) > 32);
+    assert.ok(Number(/ height="(\d+)"/.exec(svg)?.[1]) > 48);
+  });
+
+  it('draws the same image for the same stack, byte for byte', () => {
+    assert.equal(renderStack(stack, 'dark'), renderStack([...stack], 'dark'));
   });
 });
 

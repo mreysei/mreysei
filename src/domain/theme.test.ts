@@ -31,6 +31,9 @@ describe('the palettes', () => {
         );
       }
       assert.ok(contrastRatio(palette.textMuted, palette.surfaceRaised) >= TEXT, `${theme} title`);
+      // The two tones of the cards of the stack, each with the ink written on it.
+      assert.ok(contrastRatio(palette.text, palette.surfaceRaised) >= TEXT, `${theme} stack`);
+      assert.ok(contrastRatio(palette.surface, palette.accent) >= TEXT, `${theme} stack filled`);
     }
   });
 

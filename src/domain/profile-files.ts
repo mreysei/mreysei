@@ -3,7 +3,7 @@ import { describeBanner, renderBanner } from './banner.ts';
 import type { ProfileContent, ProfileLink } from './content.ts';
 import { renderLinkBadge } from './link-badge.ts';
 import { hostOf, renderReadme, type ReadmeImages } from './readme.ts';
-import { renderStack } from './stack.ts';
+import { describeStack, renderStack } from './stack.ts';
 import { THEMES } from './theme.ts';
 
 export const README_PATH = 'README.md';
@@ -62,7 +62,7 @@ export function buildProfileFiles(content: ProfileContent, viewsImageUrl: string
       path: README_PATH,
       content: renderReadme(content, images, {
         banner: describeBanner(content),
-        stack: `Technologies: ${technologies.map((technology) => technology.name).join(', ')}`,
+        stack: `Technologies: ${describeStack(technologies)}`,
         activity: activity === null ? '' : describeActivity(activity),
       }),
     },

@@ -28,7 +28,7 @@ the rest of the profile stays as it is.
 | `README.md`                        | The profile, in English: the header, the bio, the latest posts, the featured projects, the career and the two cards. A section without content is left out.      |
 | `assets/banner-{dark,light}.svg`   | The terminal of the header, with the name, role, headline and current work. Its animation ends before five seconds and never runs for who asked for less motion. |
 | `assets/link-*.svg`                | One button per public profile, and one for the website.                                                                                                          |
-| `assets/stack-{dark,light}.svg`    | The technologies of the career, most recently used first.                                                                                                        |
+| `assets/stack-{dark,light}.svg`    | The owner's stack, longest used first, each card saying about how long and filled with the accent in proportion: the longest used all accent, the least none.    |
 | `assets/activity-{dark,light}.svg` | The GitHub figures and the share of each language.                                                                                                               |
 
 The same content always gives the same files, byte for byte, so a sync without changes commits

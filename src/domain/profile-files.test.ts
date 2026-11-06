@@ -90,7 +90,9 @@ describe('buildProfileFiles', () => {
         ].join('\n'),
       ),
     );
-    assert.ok(readme.includes('alt="Technologies: TypeScript, TDD, Express"'));
+    assert.ok(
+      readme.includes('alt="Technologies: TypeScript: 5 years, TDD: 3 years, Express: 8 months"'),
+    );
     assert.ok(
       readme.includes('alt="1,677 contributions in the last year, 3,689 contributions since 2016,'),
     );
