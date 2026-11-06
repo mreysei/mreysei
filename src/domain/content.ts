@@ -87,6 +87,11 @@ export interface ProfileContent {
   /** Home of the portfolio in that locale. */
   siteUrl: string;
   blogUrl: string;
+  /** The page of every project. */
+  projectsUrl: string;
+  /** Every published post and every published project, as the website counts them. */
+  postCount: number;
+  projectCount: number;
   profile: {
     name: string;
     handle: string;

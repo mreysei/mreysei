@@ -147,7 +147,7 @@ function posts(content: ProfileContent): string[] {
   return [
     '## Latest posts',
     content.posts.map(postItem).join('\n'),
-    `${link('Every post on the blog', content.blogUrl)} →`,
+    `${link(`Every post on the blog (${String(content.postCount)})`, content.blogUrl)} →`,
   ];
 }
 
@@ -168,7 +168,11 @@ function projectItem(project: Project): string {
 
 function projects(content: ProfileContent): string[] {
   if (content.projects.length === 0) return [];
-  return ['## Projects', content.projects.map(projectItem).join('\n')];
+  return [
+    '## Projects',
+    content.projects.map(projectItem).join('\n'),
+    `${link(`Every project (${String(content.projectCount)})`, content.projectsUrl)} →`,
+  ];
 }
 
 function monthOf(isoMonth: string): string {

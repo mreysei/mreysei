@@ -20,6 +20,9 @@ export const SAMPLE_CONTENT: ProfileContent = {
   locale: 'en',
   siteUrl: 'https://www.example.org/en',
   blogUrl: 'https://www.example.org/en/blog',
+  projectsUrl: 'https://www.example.org/en/projects',
+  postCount: 7,
+  projectCount: 16,
   profile: {
     name: 'Ada Example',
     handle: 'ada',

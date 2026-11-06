@@ -124,7 +124,7 @@ describe('buildProfileFiles', () => {
           '  People come first.<br>',
           '  <sub>Jan 28, 2025 · 4 min read</sub>',
           '',
-          '[Every post on the blog](https://www.example.org/en/blog) →',
+          '[Every post on the blog (7)](https://www.example.org/en/blog) →',
         ].join('\n'),
       ),
     );
@@ -135,6 +135,8 @@ describe('buildProfileFiles', () => {
           '',
           '- **[Decide](https://www.example.org/en/projects/decide)** <sub>Mobile app · 2024</sub><br>',
           '  An app that decides for you.',
+          '',
+          '[Every project (16)](https://www.example.org/en/projects) →',
         ].join('\n'),
       ),
     );

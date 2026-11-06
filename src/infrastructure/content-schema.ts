@@ -80,6 +80,9 @@ export function profileContentSchema(siteOrigin: string) {
     locale: z.string().regex(/^[a-z]{2}$/),
     siteUrl: ownPage,
     blogUrl: ownPage,
+    projectsUrl: ownPage,
+    postCount: z.number().int().min(0),
+    projectCount: z.number().int().min(0),
     profile: z.object({
       name: text(120).min(1),
       handle: text(120),
