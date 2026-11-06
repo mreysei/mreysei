@@ -7,7 +7,15 @@
 export const CAREER_KINDS = ['education', 'freelance', 'company'] as const;
 export type CareerKind = (typeof CAREER_KINDS)[number];
 
-export const PROJECT_KINDS = ['web', 'mobile-app', 'desktop-app', 'library', 'other'] as const;
+export const PROJECT_KINDS = [
+  'web',
+  'mobile-app',
+  'desktop-app',
+  'library',
+  'bot',
+  'automation',
+  'other',
+] as const;
 export type ProjectKind = (typeof PROJECT_KINDS)[number];
 
 export interface Technology {

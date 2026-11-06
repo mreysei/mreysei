@@ -156,6 +156,8 @@ const PROJECT_KIND_NAMES: Readonly<Record<ProjectKind, string | null>> = {
   'mobile-app': 'Mobile app',
   'desktop-app': 'Desktop app',
   library: 'Library',
+  bot: 'Bot',
+  automation: 'Automation',
   other: null,
 };
 
