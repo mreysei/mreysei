@@ -58,15 +58,15 @@ His work rests on **three pillars**: *rigorous technical development, team mento
 ## Projects
 
 - **[Ecosystem](https://www.mreysei.dev/en/projects/ecosystem)** <sub>Web · 2026</sub><br>
-  The platform behind this portfolio: nine projects connected around a private API.
-- **[Kinnance](https://www.mreysei.dev/en/projects/kinnance)** <sub>Mobile app · 2026</sub><br>
-  Personal finance with savings goals and a coach that gives AI recommendations.
+  The platform behind this portfolio: eleven projects connected around a private API.
+- **[Play](https://www.mreysei.dev/en/projects/play)** <sub>Web · 2026</sub><br>
+  Portfolio as a pixel-art house: every object opens a piece of the content.
 - **[Mamoru Japan](https://www.mreysei.dev/en/projects/mamoru-japan)** <sub>Web · 2026</sub><br>
   An installable web app to keep your Japanese alive, from kana to the JLPT, that works offline.
 - **[Próxima Estación](https://www.mreysei.dev/en/projects/proxima-estacion)** <sub>Automation · 2026</sub><br>
   Practical Japanese on Instagram, produced by a team of Claude agents orchestrated by n8n.
 
-[Every project (12)](https://www.mreysei.dev/en/projects) →
+[Every project (13)](https://www.mreysei.dev/en/projects) →
 
 ## Career
 
@@ -85,7 +85,7 @@ His work rests on **three pillars**: *rigorous technical development, team mento
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/stack-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/stack-light.svg">
-  <img src="assets/stack-dark.svg" width="100%" alt="Technologies: CSS: 10 years, HTML5: 10 years, Git: 8 years, TDD: 8 years, TypeScript: 7 years, JavaScript: 7 years, Bash: 5 years, Docker: 4 years, C#: 4 years, React: 3 years, Jest: 3 years, .NET: 3 years, Android: 3 years, Azure: 3 years, Oracle: 3 years, xUnit: 3 years, Dart: 3 years, PostgreSQL: 3 years, Flutter: 2 years, PHP: 2 years, iOS: 2 years, Node.js: 2 years, BLoC: 1 year, Claude: 1 year, Fastify: 1 year, GitHub Actions: 1 year, Tailwind CSS: 1 year, Vitest: 1 year, Sass: 11 months, Vue.js: 11 months, Express: 10 months, MySQL: 10 months, ASP.NET MVC: 9 months, CSS Modules: 9 months, Drizzle ORM: 9 months, Razor: 9 months, Astro: 7 months, Next.js: 6 months, Prisma: 6 months, PWA: 6 months, SQLite: 6 months, Swift: 6 months, Vite: 6 months, Java: 5 months, JUnit: 5 months, Kotlin: 5 months, Hugo: 4 months, WordPress: 4 months, Angular: 3 months, Discord.js: 3 months, Firebase: 3 months, MongoDB: 3 months, n8n: 3 months, NestJS: 3 months, Zsh: 3 months, MVVM: 2 months, Figma: 1 month, Ionic: 1 month, Trello: 1 month">
+  <img src="assets/stack-dark.svg" width="100%" alt="Technologies: CSS: 10 years, HTML5: 10 years, Git: 8 years, TDD: 8 years, TypeScript: 7 years, JavaScript: 7 years, Bash: 5 years, Docker: 4 years, C#: 4 years, React: 3 years, Jest: 3 years, .NET: 3 years, Android: 3 years, Azure: 3 years, Oracle: 3 years, xUnit: 3 years, Dart: 3 years, PostgreSQL: 3 years, Flutter: 2 years, PHP: 2 years, Node.js: 2 years, iOS: 2 years, BLoC: 1 year, Claude: 1 year, CSS Modules: 1 year, Fastify: 1 year, GitHub Actions: 1 year, Tailwind CSS: 1 year, Vitest: 1 year, Sass: 11 months, Vue.js: 11 months, Express: 10 months, MySQL: 10 months, ASP.NET MVC: 9 months, Drizzle ORM: 9 months, Next.js: 9 months, PWA: 9 months, Razor: 9 months, Zod: 9 months, Astro: 7 months, Prisma: 6 months, SQLite: 6 months, Swift: 6 months, Vite: 6 months, Java: 5 months, JUnit: 5 months, Kotlin: 5 months, Hugo: 4 months, WordPress: 4 months, Angular: 3 months, Caddy: 3 months, DigitalOcean: 3 months, Discord.js: 3 months, Firebase: 3 months, MongoDB: 3 months, n8n: 3 months, NestJS: 3 months, Zsh: 3 months, MVVM: 2 months, Figma: 1 month, Ionic: 1 month, Trello: 1 month">
 </picture>
 
 </div>
@@ -97,7 +97,7 @@ His work rests on **three pillars**: *rigorous technical development, team mento
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/activity-light.svg">
-  <img src="assets/activity-dark.svg" width="100%" alt="5,530 contributions in the last year, 7,621 contributions since 2016, 20 days in the longest streak, 11 public repositories on GitHub. Languages: TypeScript 68.8%, Dart 16.2%, CSS 4.2%, PostgreSQL 3.3%, Other 7.5%">
+  <img src="assets/activity-dark.svg" width="100%" alt="6,174 contributions in the last year, 8,265 contributions since 2016, 20 days in the longest streak, 11 public repositories on GitHub. Languages: TypeScript 71.1%, Dart 14.4%, CSS 4.6%, PostgreSQL 3.1%, Other 6.8%">
 </picture>
 
 </div>
