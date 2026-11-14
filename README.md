@@ -97,7 +97,7 @@ His work rests on **three pillars**: *rigorous technical development, team mento
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/activity-light.svg">
-  <img src="assets/activity-dark.svg" width="100%" alt="6,174 contributions in the last year, 8,265 contributions since 2016, 20 days in the longest streak, 11 public repositories on GitHub. Languages: TypeScript 71.1%, Dart 14.4%, CSS 4.6%, PostgreSQL 3.1%, Other 6.8%">
+  <img src="assets/activity-dark.svg" width="100%" alt="6,174 contributions in the last year, 8,266 contributions since 2016, 20 days in the longest streak, 11 public repositories on GitHub. Languages: TypeScript 71.1%, Dart 14.4%, CSS 4.6%, PostgreSQL 3.1%, Other 6.8%">
 </picture>
 
 </div>
