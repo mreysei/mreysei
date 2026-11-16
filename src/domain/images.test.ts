@@ -13,8 +13,11 @@ import {
   FORBIDDEN_IN_IMAGES,
   HOSTILE,
   SAMPLE_CONTENT,
+  SAMPLE_PICTURE,
   TYPESCRIPT,
+  withoutPictures,
 } from '../testing/sample-content.ts';
+import { renderSiteButton } from './site-button.ts';
 import { experienceOf, renderStack } from './stack.ts';
 import { PALETTES, THEMES } from './theme.ts';
 
@@ -25,102 +28,134 @@ const textsOf = (svg: string) =>
   [...svg.matchAll(/<text[^>]*>([^<]*)<\/text>/g)].map(([, text]) => text);
 
 describe('renderBanner', () => {
-  it('asks the terminal who the owner is, and it answers', () => {
-    const svg = renderBanner(SAMPLE_CONTENT, 'dark');
+  const pictures = { avatar: SAMPLE_PICTURE, banner: SAMPLE_PICTURE };
+
+  it('writes the name large, the role and place in the accent and the headline under them', () => {
+    const svg = renderBanner(SAMPLE_CONTENT, 'dark', pictures);
 
     assert.deepEqual(textsOf(svg), [
-      'ada — zsh',
-      '$',
-      'whoami',
       'Ada Example',
       'Frontend Developer · Tokyo',
-      '$',
-      'cat headline.txt',
       'I build fast websites.',
-      '$',
-      'ls work/',
-      'Example Labs',
-      '$',
     ]);
+    assert.match(svg, /font-weight="800"[^>]*>Ada Example</);
+    assert.match(svg, new RegExp(`fill="${PALETTES.dark.accent}"[^>]*>Frontend Developer`));
     assert.match(
       svg,
-      /aria-label="Ada Example — Frontend Developer · Tokyo. I build fast websites. Currently at Example Labs."/,
+      /aria-label="Ada Example — Frontend Developer · Tokyo. I build fast websites."/,
     );
   });
 
-  it('leaves out what the owner has not written, and work that ended or is a school', () => {
+  it('shows the photo and the banner of the home page inside the image', () => {
+    const svg = renderBanner(SAMPLE_CONTENT, 'dark', pictures);
+
+    assert.equal(svg.split(`href="${SAMPLE_PICTURE}"`).length - 1, 2);
+    // The banner dissolves into the page through rows of dots.
+    assert.match(svg, /<pattern id="dots0"/);
+  });
+
+  it('draws the logo and the violet of the brand while the pictures are missing', () => {
+    const svg = renderBanner(SAMPLE_CONTENT, 'dark', { avatar: null, banner: null });
+
+    assert.doesNotMatch(svg, /<image/);
+    assert.match(svg, /fill="#6342f6"/);
+    assert.match(svg, /fill="#fdfefd"/);
+  });
+
+  it('leaves out what the owner has not written', () => {
     const svg = renderBanner(
       {
         ...SAMPLE_CONTENT,
         profile: { ...SAMPLE_CONTENT.profile, headline: '', role: '', location: '' },
-        career: SAMPLE_CONTENT.career.map((entry) =>
-          entry.kind === 'education'
-            ? { ...entry, endDate: null }
-            : { ...entry, endDate: '2024-01' },
-        ),
       },
       'light',
+      pictures,
     );
 
-    assert.deepEqual(textsOf(svg), ['ada — zsh', '$', 'whoami', 'Ada Example', '$']);
+    assert.deepEqual(textsOf(svg), ['Ada Example']);
     assert.match(svg, /aria-label="Ada Example\."/);
   });
 
   it('wears the colours of each scheme', () => {
     for (const theme of THEMES) {
-      assert.ok(renderBanner(SAMPLE_CONTENT, theme).includes(`fill="${PALETTES[theme].surface}"`));
+      assert.ok(
+        renderBanner(SAMPLE_CONTENT, theme, pictures).includes(`fill="${PALETTES[theme].surface}"`),
+      );
     }
-    assert.notEqual(renderBanner(SAMPLE_CONTENT, 'dark'), renderBanner(SAMPLE_CONTENT, 'light'));
+    assert.notEqual(
+      renderBanner(SAMPLE_CONTENT, 'dark', pictures),
+      renderBanner(SAMPLE_CONTENT, 'light', pictures),
+    );
   });
 
-  it('stops moving before five seconds, and never moves for who asked for less motion', () => {
-    const svg = renderBanner(SAMPLE_CONTENT, 'dark');
+  it('settles in within a second, and never moves for who asked for less motion', () => {
+    const svg = renderBanner(SAMPLE_CONTENT, 'dark', pictures);
     const delays = [...svg.matchAll(/animation-delay:([\d.]+)s/g)].map(([, delay]) =>
       Number(delay),
     );
-    const blink = Number(/blink ([\d.]+)s/.exec(svg)?.[1]);
-    const blinks = Number(/animation-iteration-count:1,(\d+)/.exec(svg)?.[1]);
-    const end = Math.max(...delays) + blink * blinks;
 
-    assert.ok(delays.length > 0 && blink > 0 && blinks > 0);
-    assert.ok(end < 5, `ends at ${String(end)} s`);
-    assert.match(
-      svg,
-      /@media \(prefers-reduced-motion:reduce\)\{\.cover,\.shown,\.cursor\{animation:none\}\}/,
-    );
+    assert.ok(delays.length > 0);
+    assert.ok(Math.max(...delays) + 0.6 < 1.5);
+    assert.match(svg, /@media \(prefers-reduced-motion:reduce\)\{\.in\{animation:none\}\}/);
     assert.doesNotMatch(svg, /infinite/);
-  });
-
-  it('draws everything where animations do not run: they only hide what is already there', () => {
-    const svg = renderBanner(SAMPLE_CONTENT, 'dark');
-
-    assert.match(svg, /\.cover\{opacity:0;/);
-    // Also where the style sheet of the image is ignored: the covers never hide the commands.
-    assert.equal(svg.split('class="cover" opacity="0"').length - 1, 3);
-    assert.match(svg, /@keyframes show\{from\{opacity:0\}\}/);
-    assert.doesNotMatch(svg, /\.shown\{[^}]*opacity:0/);
+    // Where the style sheet is ignored, nothing waits hidden.
+    assert.doesNotMatch(svg, / opacity="0"/);
   });
 
   it('gives a long headline a second line, and cuts what is longer than that', () => {
     const svg = renderBanner(
       { ...SAMPLE_CONTENT, profile: { ...SAMPLE_CONTENT.profile, headline: 'word '.repeat(60) } },
       'dark',
+      pictures,
     );
     const headline = textsOf(svg).filter((text) => text?.startsWith('word'));
 
     assert.equal(headline.length, 2);
     assert.ok(headline[1]?.endsWith('…'));
-    assert.ok(headline.every((line) => (line?.length ?? 0) < 80));
+  });
+
+  it('writes a long name smaller rather than cut it', () => {
+    const name = 'Ada Augusta King, Countess of Lovelace';
+    const svg = renderBanner(
+      { ...SAMPLE_CONTENT, profile: { ...SAMPLE_CONTENT.profile, name } },
+      'dark',
+      pictures,
+    );
+
+    assert.ok(textsOf(svg).includes(name));
+    assert.doesNotMatch(svg, /font-size="68"/);
+  });
+});
+
+describe('renderSiteButton', () => {
+  const sizeOf = (svg: string) => / width="(\d+)" height="(\d+)"/.exec(svg)?.slice(1);
+
+  it('is one size whatever it says, with the site behind its name and address', () => {
+    const short = renderSiteButton({ name: 'Play', host: 'play.example.org', preview: null });
+    const long = renderSiteButton({
+      name: 'Portfolio',
+      host: 'www.a-much-longer-address.example.org',
+      preview: SAMPLE_PICTURE,
+    });
+
+    assert.deepEqual(sizeOf(short), sizeOf(long));
+    // The address is too small to read on a phone: it is said, not drawn.
+    assert.deepEqual(textsOf(long), ['Portfolio']);
+    assert.match(long, new RegExp(`href="${SAMPLE_PICTURE}"`));
+    assert.match(long, /aria-label="Portfolio: www.a-much-longer-address.example.org"/);
+  });
+
+  it('draws the logo where there is no preview', () => {
+    const svg = renderSiteButton({ name: 'Play', host: 'play.example.org', preview: null });
+
+    assert.doesNotMatch(svg, /<image/);
+    assert.match(svg, /fill="#fdfefd"/);
   });
 });
 
 describe('renderLinkBadge', () => {
   it('writes the label next to its icon', () => {
-    const svg = renderLinkBadge({
-      label: 'LinkedIn',
-      icon: { kind: 'path', path: 'M2 2h20' },
-      primary: false,
-    });
+    const svg = renderLinkBadge({ label: 'LinkedIn', icon: { kind: 'path', path: 'M2 2h20' } });
 
     assert.deepEqual(textsOf(svg), ['LinkedIn']);
     assert.match(svg, /d="M2 2h20"/);
@@ -128,23 +163,12 @@ describe('renderLinkBadge', () => {
     assert.match(svg, /height="40"/);
   });
 
-  it('is narrower without an icon, and wears the violet of the logo when it leads to the site', () => {
+  it('is narrower without an icon', () => {
     const widthOf = (svg: string) => Number(/ width="(\d+)"/.exec(svg)?.[1]);
-    const plain = renderLinkBadge({ label: 'Other', icon: { kind: 'none' }, primary: false });
-    const withIcon = renderLinkBadge({
-      label: 'Other',
-      icon: { kind: 'path', path: 'M0 0' },
-      primary: false,
-    });
-    const site = renderLinkBadge({
-      label: 'www.example.org',
-      icon: { kind: 'logo' },
-      primary: true,
-    });
+    const plain = renderLinkBadge({ label: 'Other', icon: { kind: 'none' } });
+    const withIcon = renderLinkBadge({ label: 'Other', icon: { kind: 'path', path: 'M0 0' } });
 
     assert.ok(widthOf(plain) < widthOf(withIcon));
-    assert.match(site, /stroke="#6342f6"/);
-    assert.doesNotMatch(plain, /stroke="#6342f6"/);
   });
 });
 
@@ -244,22 +268,25 @@ describe('renderStack', () => {
 describe('the activity card', () => {
   it('reads each figure as a phrase', () => {
     assert.deepEqual(figuresOf(activity).map(phraseOf), [
-      '1,677 contributions in the last year',
       '3,689 contributions since 2016',
       '15 days in the longest streak',
-      '12 public repositories on GitHub',
+      '19 repositories on GitHub',
     ]);
   });
 
-  it('has no figure since the first year until every year was counted', () => {
-    assert.deepEqual(
-      figuresOf({ ...activity, allTime: null }).map(({ label, detail }) => `${label} ${detail}`),
-      [
-        'contributions in the last year',
-        'days in the longest streak',
-        'public repositories on GitHub',
-      ],
-    );
+  it('never shows a figure that changes while nothing new happens', () => {
+    // A day later, with one contribution less in the window of the last year.
+    const nextDay = { ...activity, totalContributions: activity.totalContributions - 1 };
+
+    assert.equal(renderActivity(nextDay, 'dark'), renderActivity(activity, 'dark'));
+  });
+
+  it('counts the contributions of the last year only until every year was counted', () => {
+    assert.deepEqual(figuresOf({ ...activity, allTime: null }).map(phraseOf), [
+      '1,677 contributions in the last year',
+      '15 days in the longest streak',
+      '19 repositories on GitHub',
+    ]);
   });
 
   it('names the four languages with the most code, largest first, and puts the rest together', () => {
@@ -285,7 +312,7 @@ describe('the activity card', () => {
     const svg = renderActivity(activity, 'dark');
     const { chart, text, border } = PALETTES.dark;
 
-    assert.deepEqual(textsOf(svg).slice(0, 3), ['1,677', 'contributions', 'in the last year']);
+    assert.deepEqual(textsOf(svg).slice(0, 3), ['3,689', 'contributions', 'since 2016']);
     assert.deepEqual(textsOf(svg).slice(-5), [
       'JavaScript 62.4%',
       'CSS 16%',
@@ -301,7 +328,7 @@ describe('the activity card', () => {
   it('says in words what it shows', () => {
     assert.equal(
       describeActivity(activity),
-      '1,677 contributions in the last year, 3,689 contributions since 2016, 15 days in the longest streak, 12 public repositories on GitHub. Languages: JavaScript 62.4%, CSS 16%, TypeScript 9.4%, Java 4.3%, Other 7.9%',
+      '3,689 contributions since 2016, 15 days in the longest streak, 19 repositories on GitHub. Languages: JavaScript 62.4%, CSS 16%, TypeScript 9.4%, Java 4.3%, Other 7.9%',
     );
   });
 });
@@ -319,7 +346,7 @@ describe('every image', () => {
     technologies: [{ ...TYPESCRIPT, name: HOSTILE, months: 1 }],
   };
   const images = THEMES.flatMap((theme) => [
-    renderBanner(hostile, theme),
+    renderBanner(hostile, theme, { avatar: SAMPLE_PICTURE, banner: SAMPLE_PICTURE }),
     renderStack(hostile.technologies, theme),
     renderActivity(
       {
@@ -328,12 +355,13 @@ describe('every image', () => {
       },
       theme,
     ),
-    renderLinkBadge({ label: HOSTILE, icon: { kind: 'logo' }, primary: true }),
+    renderLinkBadge({ label: HOSTILE, icon: { kind: 'none' } }),
+    renderSiteButton({ name: HOSTILE, host: HOSTILE, preview: SAMPLE_PICTURE }),
   ]);
 
   it('writes texts as text, never as markup', () => {
     for (const svg of images) {
-      assert.doesNotMatch(svg, FORBIDDEN_IN_IMAGES);
+      assert.doesNotMatch(withoutPictures(svg), FORBIDDEN_IN_IMAGES);
       assert.ok(svg.includes('&lt;script&gt;'));
     }
   });

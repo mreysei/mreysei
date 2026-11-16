@@ -21,6 +21,8 @@ export const SAMPLE_CONTENT: ProfileContent = {
   siteUrl: 'https://www.example.org/en',
   blogUrl: 'https://www.example.org/en/blog',
   projectsUrl: 'https://www.example.org/en/projects',
+  terminalUrl: 'https://terminal.example.org/en',
+  playUrl: 'https://play.example.org/en',
   postCount: 7,
   projectCount: 16,
   profile: {
@@ -31,6 +33,8 @@ export const SAMPLE_CONTENT: ProfileContent = {
     bio: 'A **bio** in Markdown.\n\nWith two paragraphs.',
     location: 'Tokyo',
     availableForWork: false,
+    avatar: { url: 'https://cdn.example.org/ada.jpg', alt: 'Ada', width: 600, height: 600 },
+    banner: null,
   },
   links: [
     {
@@ -105,6 +109,7 @@ export const SAMPLE_CONTENT: ProfileContent = {
     longestStreak: { days: 15, from: '2026-08-31', to: '2026-09-14' },
     currentStreak: { days: 3, from: '2026-09-26', to: '2026-09-28' },
     publicRepositories: 12,
+    privateRepositories: 7,
     topTechnologies: [
       { technology: technologyOf('CSS'), percentage: 16 },
       { technology: technologyOf('JavaScript'), percentage: 62.4 },
@@ -126,5 +131,15 @@ export const SAMPLE_CONTENT: ProfileContent = {
 /** Texts that try to be markup, wherever a text can be. */
 export const HOSTILE = '<script>alert(1)</script> & "quotes" [link](javascript:alert(1)) | `code`';
 
+/** The smallest start of a JPEG, as the sources of pictures hand it over. */
+export const SAMPLE_PICTURE = 'data:image/jpeg;base64,/9j/4AAQ';
+
 /** Nothing an image may carry: scripts, style hooks, or anything loaded from elsewhere. */
 export const FORBIDDEN_IN_IMAGES = /<script|<foreignObject|<image|<iframe|href=|@import|\bon\w+=/i;
+
+/**
+ * The image without the pictures written inside it, the one thing it may embed: a JPEG as a
+ * `data:` address. What is left must not match `FORBIDDEN_IN_IMAGES`.
+ */
+export const withoutPictures = (svg: string) =>
+  svg.replace(/<image [^>]*href="data:image\/jpeg;base64,[A-Za-z0-9+/=]+"\/>/g, '');

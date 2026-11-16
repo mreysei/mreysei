@@ -25,35 +25,43 @@ export interface Figure {
   detail: string;
 }
 
-/** A figure as a phrase, such as `1,677 contributions in the last year`. */
+/** A figure as a phrase, such as `3,689 contributions since 2016`. */
 export const phraseOf = ({ value, label, detail }: Figure) => `${value} ${label} ${detail}`;
 
-/** The headline figures: what was contributed, for how long in a row, and what is public. */
-export function figuresOf(activity: Activity): Figure[] {
-  const firstYear = activity.allTime?.years[0]?.year;
-  return [
-    {
+/**
+ * What was contributed: every contribution once they are counted. The figure of the last year
+ * is only a stand-in until then, because it falls every day a contribution leaves the window,
+ * and the profile must not change while nothing new happened.
+ */
+function contributionsOf(activity: Activity): Figure {
+  if (activity.allTime === null) {
+    return {
       value: figures.format(activity.totalContributions),
       label: 'contributions',
       detail: 'in the last year',
-    },
-    ...(activity.allTime === null
-      ? []
-      : [
-          {
-            value: figures.format(activity.allTime.contributions),
-            label: 'contributions',
-            detail: firstYear === undefined ? 'in total' : `since ${firstYear}`,
-          },
-        ]),
+    };
+  }
+  const firstYear = activity.allTime.years[0]?.year;
+  return {
+    value: figures.format(activity.allTime.contributions),
+    label: 'contributions',
+    detail: firstYear === undefined ? 'in total' : `since ${String(firstYear)}`,
+  };
+}
+
+/** The headline figures: what was contributed, for how long in a row, and in how many places. */
+export function figuresOf(activity: Activity): Figure[] {
+  return [
+    contributionsOf(activity),
     {
       value: figures.format(activity.longestStreak.days),
       label: 'days',
       detail: 'in the longest streak',
     },
     {
-      value: figures.format(activity.publicRepositories),
-      label: 'public repositories',
+      // Public and private together, as the home page of the portfolio counts them.
+      value: figures.format(activity.publicRepositories + activity.privateRepositories),
+      label: 'repositories',
       detail: 'on GitHub',
     },
   ];

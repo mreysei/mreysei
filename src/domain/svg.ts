@@ -6,6 +6,13 @@
 export const FONT_FAMILY =
   "ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace";
 
+/**
+ * The hero and the buttons of the sites speak like the portfolio, in a sans-serif. Its width is
+ * unknown, so those texts keep their own: `widthOf` only tells whether they fit, generously.
+ */
+export const SANS_FAMILY =
+  "system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif";
+
 /** As wide as GitHub shows a README on a desk, so the cards are drawn at their own size there. */
 export const IMAGE_WIDTH = 880;
 
@@ -78,23 +85,36 @@ export interface TextOptions {
   fontSize: number;
   fill: string;
   bold?: boolean;
+  /** The heavy weight of the name in the hero; `bold` otherwise. */
+  weight?: 800;
+  /** Drawn in `SANS_FAMILY`, at its own width. */
+  sans?: boolean;
   /** `middle` centres the text on `x`; it starts there otherwise. */
   anchor?: 'start' | 'middle';
   className?: string;
   style?: string;
 }
 
-/** One line of text, vertically centred on `y`, as wide as a monospace font would make it. */
+/**
+ * One line of text, vertically centred on `y`: as wide as a monospace font would make it, or at
+ * its own width in the sans-serif.
+ */
 export function textElement(text: string, options: TextOptions): string {
+  const sans = options.sans === true;
   const attributes = [
     `x="${options.x}"`,
     `y="${options.y}"`,
     'dominant-baseline="central"',
     `font-size="${options.fontSize}"`,
-    `textLength="${widthOf(text, options.fontSize)}"`,
-    'lengthAdjust="spacingAndGlyphs"',
+    ...(sans
+      ? [`font-family="${SANS_FAMILY}"`]
+      : [`textLength="${widthOf(text, options.fontSize)}"`, 'lengthAdjust="spacingAndGlyphs"']),
     `fill="${options.fill}"`,
-    ...(options.bold === true ? ['font-weight="700"'] : []),
+    ...(options.weight === undefined
+      ? options.bold === true
+        ? ['font-weight="700"']
+        : []
+      : [`font-weight="${options.weight}"`]),
     ...(options.anchor === 'middle' ? ['text-anchor="middle"'] : []),
     ...(options.className === undefined ? [] : [`class="${options.className}"`]),
     ...(options.style === undefined ? [] : [`style="${options.style}"`]),
@@ -110,6 +130,18 @@ export function iconElement(
 ): string {
   const scale = position.size / 24;
   return `<path transform="translate(${position.x} ${position.y}) scale(${scale})" fill="${fill}" d="${escapeXml(path)}"/>`;
+}
+
+/**
+ * A picture inside the image, as a `data:` address: GitHub shows the image alone, where nothing
+ * outside it is loaded. It covers its box, cut to fit.
+ */
+export function pictureElement(
+  dataUrl: string,
+  box: { x: number; y: number; width: number; height: number },
+  align = 'xMidYMid',
+): string {
+  return `<image x="${box.x}" y="${box.y}" width="${box.width}" height="${box.height}" preserveAspectRatio="${align} slice" href="${escapeXml(dataUrl)}"/>`;
 }
 
 export interface SvgOptions {

@@ -8,6 +8,8 @@ export interface ReadmeImages {
   banner: string;
   stack: string | null;
   activity: string | null;
+  /** The owner's sites, each a button with its image, all of one size. */
+  sites: { url: string; label: string; image: string }[];
   /** The links of the profile, in order, each with the image of its button. */
   links: { url: string; label: string; image: string }[];
   /** The counter of views of the profile, served by the portfolio in a colour scheme. */
@@ -20,6 +22,9 @@ export interface ReadmeTexts {
   stack: string;
   activity: string;
 }
+
+/** With the spaces between them, three of these fill a line without wrapping. */
+const SITE_BUTTON_SHARE = '32%';
 
 const day = new Intl.DateTimeFormat('en-US', { dateStyle: 'medium', timeZone: 'UTC' });
 const month = new Intl.DateTimeFormat('en-US', {
@@ -76,18 +81,23 @@ function themed(base: string, attributes: string, alt: string): string {
   ].join('\n');
 }
 
-function header(content: ProfileContent, images: ReadmeImages, texts: ReadmeTexts): string {
+function header(images: ReadmeImages, texts: ReadmeTexts): string {
   const buttons = images.links.map(
     ({ url, label, image }) =>
       `<a href="${escapeXml(url)}"><img src="${escapeXml(image)}" height="${LINK_BADGE_HEIGHT}" alt="${escapeXml(label)}"></a>`,
   );
+  // A third of the width each, so the three stay side by side on a desk and on a phone alike.
+  const sites = images.sites.map(
+    ({ url, label, image }) =>
+      `<a href="${escapeXml(url)}"><img src="${escapeXml(image)}" width="${SITE_BUTTON_SHARE}" alt="${escapeXml(label)}"></a>`,
+  );
   return [
     '<div align="center">',
     '',
-    `<a href="${escapeXml(content.siteUrl)}">`,
+    // Not a link: the button of the portfolio right under it is the one, named by where it goes.
     themed(images.banner, 'width="100%"', texts.banner),
-    '</a>',
     '',
+    ...(sites.length === 0 ? [] : ['<p>', sites.join('\n'), '</p>', '']),
     ...(buttons.length === 0 ? [] : ['<p>', buttons.join('\n'), '</p>', '']),
     '<picture>',
     `  <source media="(prefers-color-scheme: dark)" srcset="${escapeXml(images.views.dark)}">`,
@@ -227,7 +237,7 @@ export function renderReadme(
 ): string {
   const sections = [
     NOTICE,
-    header(content, images, texts),
+    header(images, texts),
     ...about(content),
     ...posts(content),
     ...projects(content),

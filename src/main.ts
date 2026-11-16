@@ -1,20 +1,13 @@
 import { makeSyncProfile } from './application/sync-profile.ts';
+import { DiskPreviewSource } from './infrastructure/disk-preview-source.ts';
 import { DiskProfileStore } from './infrastructure/disk-profile-store.ts';
+import { optionalOriginOf, originOf, otherSitesOf } from './environment.ts';
 import { HttpContentSource } from './infrastructure/http-content-source.ts';
+import { HttpPictureSource } from './infrastructure/http-picture-source.ts';
 
 /** The README is written in English, the language of GitHub; the site has the other two. */
 const LOCALE = 'en';
 const VIEWS_IMAGE_PATH = '/api/github-profile/views.svg';
-
-/** The origin of a site named in the environment: no host is written in the program. */
-function originOf(variable: string, value: string | undefined): string {
-  if (value === undefined || !URL.canParse(value)) {
-    throw new Error(
-      `${variable} must be the address of the portfolio, such as https://www.example.org.`,
-    );
-  }
-  return new URL(value).origin;
-}
 
 /** The composition root: the only place that knows the adapters and the configuration. */
 function compose() {
@@ -27,8 +20,14 @@ function compose() {
       ? siteOrigin
       : originOf('PROFILE_VIEWS_SITE_URL', PROFILE_VIEWS_SITE_URL);
   return makeSyncProfile({
-    source: new HttpContentSource(siteOrigin, LOCALE),
+    source: new HttpContentSource(siteOrigin, LOCALE, otherSitesOf(process.env)),
     store: new DiskProfileStore(PROFILE_FOLDER ?? process.cwd()),
+    pictures: new HttpPictureSource(
+      siteOrigin,
+      optionalOriginOf('PROFILE_CDN_URL', process.env.PROFILE_CDN_URL),
+    ),
+    // The screenshots belong to this repository, wherever the files are written.
+    previews: new DiskPreviewSource(process.cwd()),
     viewsImageUrl: `${viewsOrigin}${VIEWS_IMAGE_PATH}`,
   });
 }

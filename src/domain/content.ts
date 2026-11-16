@@ -76,6 +76,14 @@ export interface Project {
   year: number;
 }
 
+/** A picture of the portfolio, on its CDN. */
+export interface Picture {
+  url: string;
+  alt: string;
+  width: number | null;
+  height: number | null;
+}
+
 export interface Streak {
   days: number;
   from: string | null;
@@ -89,6 +97,8 @@ export interface Activity {
   longestStreak: Streak;
   currentStreak: Streak;
   publicRepositories: number;
+  /** Those the token of the portfolio can see: 0 when it reads only public data. */
+  privateRepositories: number;
   /** Shares of the code of the owner's repositories, 0 to 100. */
   topTechnologies: { technology: Technology; percentage: number }[];
   /** Every contribution by calendar year, oldest first; null until it was counted. */
@@ -102,6 +112,9 @@ export interface ProfileContent {
   blogUrl: string;
   /** The page of every project. */
   projectsUrl: string;
+  /** The other versions of the portfolio in that locale; null while one is not shown. */
+  terminalUrl: string | null;
+  playUrl: string | null;
   /** Every published post and every published project, as the website counts them. */
   postCount: number;
   projectCount: number;
@@ -114,6 +127,9 @@ export interface ProfileContent {
     bio: string;
     location: string;
     availableForWork: boolean;
+    /** The pictures of the hero of the home page. */
+    avatar: Picture | null;
+    banner: Picture | null;
   };
   /** The owner's public profiles on other websites. */
   links: ProfileLink[];

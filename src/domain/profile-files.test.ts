@@ -2,12 +2,22 @@ import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { buildProfileFiles, README_PATH } from './profile-files.ts';
 import { inline } from './readme.ts';
-import { FORBIDDEN_IN_IMAGES, HOSTILE, SAMPLE_CONTENT } from '../testing/sample-content.ts';
+import {
+  FORBIDDEN_IN_IMAGES,
+  HOSTILE,
+  SAMPLE_CONTENT,
+  SAMPLE_PICTURE,
+  withoutPictures,
+} from '../testing/sample-content.ts';
 
 const VIEWS = 'https://www.example.org/api/github-profile/views.svg';
+const PICTURES = {
+  hero: { avatar: SAMPLE_PICTURE, banner: SAMPLE_PICTURE },
+  previews: { portfolio: SAMPLE_PICTURE, terminal: SAMPLE_PICTURE, play: null },
+};
 
 function build(content = SAMPLE_CONTENT) {
-  const files = buildProfileFiles(content, VIEWS);
+  const files = buildProfileFiles(content, VIEWS, PICTURES);
   const readme = files.find((file) => file.path === README_PATH)?.content ?? '';
   return { files, readme, paths: files.map((file) => file.path) };
 }
@@ -20,7 +30,9 @@ describe('buildProfileFiles', () => {
       'README.md',
       'assets/banner-dark.svg',
       'assets/banner-light.svg',
-      'assets/link-site.svg',
+      'assets/site-portfolio.svg',
+      'assets/site-terminal.svg',
+      'assets/site-play.svg',
       'assets/link-linkedin.svg',
       'assets/link-other.svg',
       'assets/stack-dark.svg',
@@ -35,7 +47,32 @@ describe('buildProfileFiles', () => {
     assert.deepEqual(build().files, build().files);
   });
 
-  it('links the site first, then the profiles, and never GitHub from GitHub', () => {
+  it('opens the three sites from buttons of one size, side by side, under the header', () => {
+    const { readme } = build();
+    const sites = [
+      ...readme.matchAll(
+        /<a href="([^"]+)"><img src="assets\/site-[^"]+" width="32%" alt="([^"]+)"><\/a>/g,
+      ),
+    ].map(([, url, alt]) => [url, alt]);
+
+    assert.deepEqual(sites, [
+      ['https://www.example.org/en', 'Portfolio: www.example.org'],
+      ['https://terminal.example.org/en', 'Terminal: terminal.example.org'],
+      ['https://play.example.org/en', 'Play: play.example.org'],
+    ]);
+    assert.ok(readme.indexOf('site-portfolio') < readme.indexOf('## About'));
+  });
+
+  it('leaves out the button of a site the portfolio does not show', () => {
+    const { paths } = build({ ...SAMPLE_CONTENT, terminalUrl: null, playUrl: null });
+
+    assert.deepEqual(
+      paths.filter((path) => path.includes('site-')),
+      ['assets/site-portfolio.svg'],
+    );
+  });
+
+  it('links the profiles after the sites, and never GitHub from GitHub', () => {
     const { readme } = build();
     const links = [
       ...readme.matchAll(
@@ -44,7 +81,6 @@ describe('buildProfileFiles', () => {
     ].map(([, url, alt]) => [url, alt]);
 
     assert.deepEqual(links, [
-      ['https://www.example.org/en', 'www.example.org'],
       ['https://www.linkedin.com/in/ada', 'LinkedIn'],
       ['https://example.net/ada', 'Other'],
     ]);
@@ -85,7 +121,7 @@ describe('buildProfileFiles', () => {
           '<picture>',
           '  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">',
           '  <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.svg">',
-          '  <img src="assets/banner-dark.svg" width="100%" alt="Ada Example — Frontend Developer · Tokyo. I build fast websites. Currently at Example Labs.">',
+          '  <img src="assets/banner-dark.svg" width="100%" alt="Ada Example — Frontend Developer · Tokyo. I build fast websites.">',
           '</picture>',
         ].join('\n'),
       ),
@@ -94,7 +130,7 @@ describe('buildProfileFiles', () => {
       readme.includes('alt="Technologies: TypeScript: 5 years, TDD: 3 years, Express: 8 months"'),
     );
     assert.ok(
-      readme.includes('alt="1,677 contributions in the last year, 3,689 contributions since 2016,'),
+      readme.includes('alt="3,689 contributions since 2016, 15 days in the longest streak,'),
     );
   });
 
@@ -185,7 +221,9 @@ describe('buildProfileFiles', () => {
       'README.md',
       'assets/banner-dark.svg',
       'assets/banner-light.svg',
-      'assets/link-site.svg',
+      'assets/site-portfolio.svg',
+      'assets/site-terminal.svg',
+      'assets/site-play.svg',
     ]);
     assert.doesNotMatch(readme, /^## /m);
     assert.doesNotMatch(readme, /stack|activity/);
@@ -235,7 +273,7 @@ describe('buildProfileFiles', () => {
     assert.equal(row.match(/(?<!\\)\|/g)?.length, 4, 'a pipe of a text adds no column');
     assert.ok(readme.includes(inline(HOSTILE)));
     for (const file of files.slice(1))
-      assert.doesNotMatch(file.content, FORBIDDEN_IN_IMAGES, file.path);
+      assert.doesNotMatch(withoutPictures(file.content), FORBIDDEN_IN_IMAGES, file.path);
   });
 });
 

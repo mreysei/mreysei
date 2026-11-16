@@ -1,7 +1,12 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { SAMPLE_CONTENT } from '../testing/sample-content.ts';
-import { makeSyncProfile, type ProfileStore } from './sync-profile.ts';
+import { SAMPLE_CONTENT, SAMPLE_PICTURE } from '../testing/sample-content.ts';
+import {
+  makeSyncProfile,
+  type PictureSource,
+  type PreviewSource,
+  type ProfileStore,
+} from './sync-profile.ts';
 
 const VIEWS = 'https://www.example.org/api/github-profile/views.svg';
 
@@ -30,10 +35,26 @@ class InMemoryProfileStore implements ProfileStore {
   }
 }
 
+/** Every picture asked for, and the same small JPEG for each. */
+class FakePictureSource implements PictureSource {
+  readonly asked: [string, number][] = [];
+
+  read(url: string, width: number): Promise<string> {
+    this.asked.push([url, width]);
+    return Promise.resolve(SAMPLE_PICTURE);
+  }
+}
+
+const previews: PreviewSource = {
+  read: (site) => Promise.resolve(site === 'play' ? null : SAMPLE_PICTURE),
+};
+
 function setup(content = SAMPLE_CONTENT) {
   const store = new InMemoryProfileStore();
+  const pictures = new FakePictureSource();
   const source = { content, read: () => Promise.resolve(source.content) };
-  return { store, source, sync: makeSyncProfile({ source, store, viewsImageUrl: VIEWS }) };
+  const sync = makeSyncProfile({ source, store, pictures, previews, viewsImageUrl: VIEWS });
+  return { store, source, pictures, sync };
 }
 
 describe('syncProfile', () => {
@@ -43,10 +64,41 @@ describe('syncProfile', () => {
     const { written, removed } = await sync();
 
     assert.equal(written[0], 'README.md');
-    assert.equal(written.length, 10);
+    assert.equal(written.length, 12);
     assert.deepEqual(removed, []);
     assert.ok(store.files.get('README.md')?.includes('## About'));
     assert.ok(store.files.get('assets/banner-dark.svg')?.startsWith('<svg '));
+  });
+
+  it('draws the photo and the banner of the portfolio, at twice the size the hero shows them', async () => {
+    const { store, pictures, sync } = setup({
+      ...SAMPLE_CONTENT,
+      profile: {
+        ...SAMPLE_CONTENT.profile,
+        banner: { url: 'https://cdn.example.org/banner.jpg', alt: '', width: null, height: null },
+      },
+    });
+
+    await sync();
+
+    assert.deepEqual(pictures.asked, [
+      ['https://cdn.example.org/ada.jpg', 320],
+      ['https://cdn.example.org/banner.jpg', 960],
+    ]);
+    assert.equal(store.files.get('assets/banner-dark.svg')?.split('<image').length, 3);
+    assert.match(store.files.get('assets/site-terminal.svg') ?? '', /<image/);
+    assert.doesNotMatch(store.files.get('assets/site-play.svg') ?? '', /<image/);
+  });
+
+  it('asks for no picture the portfolio has not got', async () => {
+    const { pictures, sync } = setup({
+      ...SAMPLE_CONTENT,
+      profile: { ...SAMPLE_CONTENT.profile, avatar: null, banner: null },
+    });
+
+    await sync();
+
+    assert.deepEqual(pictures.asked, []);
   });
 
   it('touches nothing while the content is the same', async () => {
@@ -100,6 +152,8 @@ describe('syncProfile', () => {
         read: () => Promise.reject(new Error('The portfolio answered 503 for the content.')),
       },
       store,
+      pictures: new FakePictureSource(),
+      previews,
       viewsImageUrl: VIEWS,
     });
 
@@ -111,5 +165,20 @@ describe('syncProfile', () => {
         ['assets/banner-dark.svg', '<svg/>'],
       ],
     );
+  });
+
+  it('keeps the profile as it was when a picture cannot be read', async () => {
+    const store = new InMemoryProfileStore();
+    store.files.set('README.md', 'the profile of yesterday');
+    const sync = makeSyncProfile({
+      source: { read: () => Promise.resolve(SAMPLE_CONTENT) },
+      store,
+      pictures: { read: () => Promise.reject(new Error('The CDN answered 404.')) },
+      previews,
+      viewsImageUrl: VIEWS,
+    });
+
+    await assert.rejects(sync(), /answered 404/);
+    assert.deepEqual([...store.files], [['README.md', 'the profile of yesterday']]);
   });
 });

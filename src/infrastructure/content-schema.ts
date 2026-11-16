@@ -2,6 +2,16 @@ import { z } from 'zod';
 import { CAREER_KINDS, PROJECT_KINDS, type ProfileContent } from '../domain/content.ts';
 
 /**
+ * The content as the portfolio answers it. A portfolio older than the profile may not say where
+ * its terminal and its play site are: `undefined`, which is not `null`, the answer of one that
+ * hides them.
+ */
+export type ProfileContentAnswer = Omit<ProfileContent, 'terminalUrl' | 'playUrl'> & {
+  terminalUrl?: string | null | undefined;
+  playUrl?: string | null | undefined;
+};
+
+/**
  * What the portfolio answers, checked before a byte of it is written: the README and its images
  * end up on a public profile. The rules are the ones of `docs/contract.ts` of the platform, and
  * stricter where a profile needs less.
@@ -25,12 +35,15 @@ const markdown = (max: number) =>
     .max(max)
     .refine((value) => !CONTROL_CHARACTER_OF_MARKDOWN.test(value), 'Must be text.');
 
-/** Without a user, a password or a port: an address that is what it looks like. */
-function isPlainAddress(value: string): boolean {
+/** Without a user or a password: an address that is what it looks like. */
+function isWithoutCredentials(value: string): boolean {
   if (!URL.canParse(value)) return false;
   const url = new URL(value);
-  return url.username === '' && url.password === '' && url.port === '';
+  return url.username === '' && url.password === '';
 }
+
+/** Without a user, a password or a port. */
+const isPlainAddress = (value: string) => isWithoutCredentials(value) && new URL(value).port === '';
 
 /**
  * A page on another website, opened by readers of the profile: https on a public domain, never
@@ -60,6 +73,18 @@ const technology = z.object({
   iconPath: iconPath.nullable(),
 });
 
+/**
+ * The address of another site of the owner, or of one of his pictures: https on a public domain,
+ * as `externalUrl`, except for a portfolio in development, whose sites and CDN are local too.
+ */
+function siblingUrl(siteOrigin: string) {
+  if (new URL(siteOrigin).protocol === 'https:') return externalUrl;
+  return z
+    .url({ protocol: /^https?$/ })
+    .max(2048)
+    .refine(isWithoutCredentials, 'Must not carry credentials.');
+}
+
 const streak = z.object({ days: count, from: isoDay.nullable(), to: isoDay.nullable() });
 
 /**
@@ -74,6 +99,17 @@ export function profileContentSchema(siteOrigin: string) {
       (value) => URL.canParse(value) && new URL(value).origin === siteOrigin,
       'Must be a page of the portfolio.',
     );
+  const sibling = siblingUrl(siteOrigin);
+  const picture = z
+    .object({
+      url: sibling,
+      alt: text(400),
+      width: count.max(20_000).nullable(),
+      height: count.max(20_000).nullable(),
+    })
+    .nullable()
+    // An older portfolio does not send its pictures: the hero is drawn without them.
+    .default(null);
 
   return z.object({
     // A language code and a slug: the languages and platforms are the portfolio's to name.
@@ -81,6 +117,8 @@ export function profileContentSchema(siteOrigin: string) {
     siteUrl: ownPage,
     blogUrl: ownPage,
     projectsUrl: ownPage,
+    terminalUrl: sibling.nullable().optional(),
+    playUrl: sibling.nullable().optional(),
     postCount: z.number().int().min(0),
     projectCount: z.number().int().min(0),
     profile: z.object({
@@ -91,6 +129,8 @@ export function profileContentSchema(siteOrigin: string) {
       bio: markdown(20_000),
       location: text(200),
       availableForWork: z.boolean(),
+      avatar: picture,
+      banner: picture,
     }),
     links: z
       .array(
@@ -151,6 +191,8 @@ export function profileContentSchema(siteOrigin: string) {
         longestStreak: streak,
         currentStreak: streak,
         publicRepositories: count,
+        // An older portfolio counts only the public ones.
+        privateRepositories: count.default(0),
         topTechnologies: z
           .array(z.object({ technology, percentage: z.number().min(0).max(100) }))
           .max(300),
@@ -164,5 +206,5 @@ export function profileContentSchema(siteOrigin: string) {
           .nullable(),
       })
       .nullable(),
-  }) satisfies z.ZodType<ProfileContent>;
+  }) satisfies z.ZodType<ProfileContentAnswer>;
 }

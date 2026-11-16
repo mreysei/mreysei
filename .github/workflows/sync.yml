@@ -51,6 +51,12 @@ jobs:
       # The portfolio the profile is written from. A repository variable of the same name
       # replaces it without touching this file.
       PROFILE_SITE_URL: ${{ vars.PROFILE_SITE_URL || 'https://www.mreysei.dev' }}
+      # The terminal and the play site, while the portfolio does not name them itself; once it
+      # does, what it says wins, so a site the owner hides there leaves the profile too.
+      PROFILE_TERMINAL_URL: ${{ vars.PROFILE_TERMINAL_URL || 'https://terminal.mreysei.dev' }}
+      PROFILE_PLAY_URL: ${{ vars.PROFILE_PLAY_URL || 'https://play.mreysei.dev' }}
+      # The only place the pictures of the hero are read from.
+      PROFILE_CDN_URL: ${{ vars.PROFILE_CDN_URL || 'https://cdn.mreysei.dev' }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       # No cache here: this job writes, and takes nothing a job that ran more code left behind.
