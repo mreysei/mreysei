@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Enforces gitmoji: the summary must start with an emoji or a :shortcode:.
+# Installed by ia-new (git config core.hooksPath .githooks).
+msg_file="$1"
+first_line="$(head -n1 "$msg_file")"
+
+# Allow git-generated messages
+case "$first_line" in
+  Merge*|Revert*|fixup!*|squash!*|amend!*) exit 0 ;;
+esac
+
+# :shortcode: form
+if [[ "$first_line" =~ ^:[a-z0-9_+-]+:\  ]]; then exit 0; fi
+
+# Unicode emoji form: first byte is non-ASCII
+first_byte="$(printf '%s' "$first_line" | head -c1 | od -An -tu1 | tr -d ' ')"
+if [[ -n "$first_byte" && "$first_byte" -ge 128 ]]; then exit 0; fi
+
+echo "✖ Commit message must start with a gitmoji (e.g. '✨ Add login form' or ':sparkles: Add login form')." >&2
+echo "  See https://gitmoji.dev" >&2
+exit 1
