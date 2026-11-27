@@ -88,7 +88,7 @@ His work rests on **three pillars**: *rigorous technical development, team mento
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/stack-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/stack-light.svg">
-  <img src="assets/stack-dark.svg" width="100%" alt="Technologies: CSS: 10 years, HTML5: 10 years, Git: 8 years, TDD: 8 years, JavaScript: 7 years, TypeScript: 7 years, Bash: 6 years, Docker: 4 years, C#: 4 years, React: 3 years, Jest: 3 years, .NET: 3 years, Android: 3 years, Azure: 3 years, Oracle: 3 years, xUnit: 3 years, Dart: 3 years, PostgreSQL: 3 years, Flutter: 2 years, PHP: 2 years, Node.js: 2 years, iOS: 2 years, BLoC: 1 year, Claude: 1 year, CSS Modules: 1 year, Fastify: 1 year, GitHub Actions: 1 year, Tailwind CSS: 1 year, Vitest: 1 year, Sass: 11 months, Vue.js: 11 months, Express: 10 months, MySQL: 10 months, ASP.NET MVC: 9 months, Drizzle ORM: 9 months, Next.js: 9 months, PWA: 9 months, Razor: 9 months, Zod: 9 months, Astro: 8 months, Kotlin: 6 months, Prisma: 6 months, SQLite: 6 months, Swift: 6 months, Vite: 6 months, Java: 5 months, JUnit: 5 months, Hugo: 4 months, WordPress: 4 months, Angular: 3 months, Caddy: 3 months, DigitalOcean: 3 months, Discord.js: 3 months, Firebase: 3 months, MongoDB: 3 months, n8n: 3 months, NestJS: 3 months, Zsh: 3 months, MVVM: 2 months, Figma: 1 month, Ionic: 1 month, Trello: 1 month">
+  <img src="assets/stack-dark.svg" width="100%" alt="Technologies: CSS: 10 years, HTML5: 10 years, Git: 8 years, TDD: 8 years, JavaScript: 7 years, TypeScript: 7 years, Bash: 6 years, Docker: 4 years, C#: 4 years, React: 3 years, Jest: 3 years, .NET: 3 years, Android: 3 years, Azure: 3 years, Oracle: 3 years, xUnit: 3 years, Dart: 3 years, PostgreSQL: 3 years, Flutter: 2 years, PHP: 2 years, Node.js: 2 years, iOS: 2 years, BLoC: 1 year, Claude: 1 year, CSS Modules: 1 year, Fastify: 1 year, GitHub Actions: 1 year, Tailwind CSS: 1 year, Vitest: 1 year, Sass: 11 months, Vue.js: 11 months, Express: 10 months, MySQL: 10 months, ASP.NET MVC: 9 months, Drizzle ORM: 9 months, Next.js: 9 months, PWA: 9 months, Razor: 9 months, Zod: 9 months, Astro: 8 months, Swift: 8 months, Kotlin: 7 months, Prisma: 6 months, SQLite: 6 months, Vite: 6 months, Java: 5 months, JUnit: 5 months, Hugo: 4 months, WordPress: 4 months, Angular: 3 months, Caddy: 3 months, DigitalOcean: 3 months, Discord.js: 3 months, Firebase: 3 months, MongoDB: 3 months, n8n: 3 months, NestJS: 3 months, Zsh: 3 months, MVVM: 2 months, Figma: 1 month, Ionic: 1 month, Trello: 1 month">
 </picture>
 
 </div>
@@ -100,7 +100,7 @@ His work rests on **three pillars**: *rigorous technical development, team mento
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/activity-light.svg">
-  <img src="assets/activity-dark.svg" width="100%" alt="9,595 contributions since 2016, 15 days in the longest streak, 45 repositories on GitHub. Languages: TypeScript 71.9%, Dart 12%, CSS 4.3%, JavaScript 3.9%, Other 7.9%">
+  <img src="assets/activity-dark.svg" width="100%" alt="9,938 contributions since 2016, 15 days in the longest streak, 45 repositories on GitHub. Languages: TypeScript 71.7%, Dart 12.4%, CSS 4.2%, JavaScript 3.9%, Other 7.8%">
 </picture>
 
 </div>
